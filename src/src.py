@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-def american_launch_data():
+def launch_graphs():
 
     launch_df = pd.read_csv("data/Space_Corrected.csv")
 
@@ -22,31 +22,6 @@ def american_launch_data():
     america_rahh_df = combined_nasa_spacex_ula[combined_nasa_spacex_ula['Date'] > cutoff_date]
     launch_counts = america_rahh_df.groupby(['Date', 'Company Name']).size().reset_index(name='Launch Count')
     grouped_counts = launch_counts.groupby(['Company Name', launch_counts['Date'].dt.year])['Launch Count'].sum().reset_index()
-    
-    ## Plots the 'grouped_counts' df
-    plt.figure(figsize=(12,6))
-    sns.barplot(x='Date', y='Launch Count', hue='Company Name', data=grouped_counts, palette='Paired')
-    plt.title('Number of Launches over time by US organizations / companies')
-    plt.xlabel('Date')
-    plt.ylabel('Number of launches')
-    plt.xticks(rotation=45, size=9)
-    plt.tight_layout()
-    
-    return plt
-
-american_launch_data().show()
-
-
-
-def included_russia():
-
-    launch_df = pd.read_csv("data/Space_Corrected.csv")
-    cleaned_launch_df = launch_df.drop(['Unnamed: 0.1', 'Unnamed: 0'], axis=1)
-    cleaned_launch_df['Date'] = cleaned_launch_df['Datum'].str[:16]
-    cleaned_launch_df.drop(columns=['Datum'], inplace=True)
-    cleaned_launch_df['Date'] = pd.to_datetime(cleaned_launch_df['Date'], format='%a %b %d, %Y')
-
-    cutoff_date = pd.to_datetime('2000-01-01')
 
     ## Combines russian agencies for comparison
     combined_names_usa_ussr = ['SpaceX' , 'NASA', 'ULA', 'Roscosmos', 'RVSN USSR']
@@ -54,18 +29,29 @@ def included_russia():
     updated_launch_counts = combined_usa_ussr.groupby(['Date', 'Company Name']).size().reset_index(name='Launch Count')
     comparative_df = updated_launch_counts[updated_launch_counts['Date'] > cutoff_date]
     updated_groups = comparative_df.groupby(['Company Name', comparative_df['Date'].dt.year])['Launch Count'].sum().reset_index()
+    
+    ## Creates the US organizations launch graph
+    plt.figure(figsize=(12,6))
+    sns.barplot(x='Date', y='Launch Count', hue='Company Name', data=grouped_counts, palette='Paired')
+    plt.title('Number of Launches over time by US organizations / companies')
+    plt.xlabel('Date')
+    plt.ylabel('Number of launches')
+    plt.xticks(rotation=45, size=9)
+    plt.tight_layout()
 
+    ## Creates the same graph that includes Russian launches for comparison
     plt.figure(figsize=(12,6))
     sns.barplot(x='Date', y='Launch Count', hue='Company Name', data=updated_groups, palette='Paired')
     plt.title('Number of Launches over time by organization')
     plt.xlabel('Date')
     plt.ylabel('Number of launches')
-    plt.xticks(rotation=45, size=10)
+    plt.xticks(rotation=45, size=9)
     plt.tight_layout()
-
+    
     return plt
 
-included_russia().show()
+launch_graphs().show()
+
 
 
 def nasa_vs_ussr():
@@ -79,14 +65,13 @@ def nasa_vs_ussr():
     cleaned_launch_df.drop(columns=['Datum'], inplace=True)
     cleaned_launch_df['Date'] = pd.to_datetime(cleaned_launch_df['Date'], format='%a %b %d, %Y')
 
+    ## Includes only NASA and Soviet launch data
     russia_and_nasa_names = ['NASA' , 'RVSN USSR']
     russia_and_nasa = cleaned_launch_df[cleaned_launch_df['Company Name'].str.contains('|'.join(russia_and_nasa_names))]
     russia_and_nasa[russia_and_nasa['Date'] > to_2000]
+    grouped = russia_and_nasa.groupby(['Date', 'Company Name']).size().reset_index(name='Launch Count')
+    comparative_usa_russia = grouped.groupby(['Company Name', grouped['Date'].dt.year])['Launch Count'].sum().reset_index()
 
-    test = russia_and_nasa.groupby(['Date', 'Company Name']).size().reset_index(name='Launch Count')
-
-    comparative_usa_russia = test.groupby(['Company Name', test['Date'].dt.year])['Launch Count'].sum().reset_index()
-    
     plt.figure(figsize=(17,6))
     sns.barplot(x='Date', y='Launch Count', hue='Company Name', data=comparative_usa_russia, palette='Paired')
     plt.title('Number of Launches over time from NASA and the USSR')
