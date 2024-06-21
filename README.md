@@ -1,6 +1,6 @@
 # The Fall of the Soviet Union and its effects on American space flight
 
-With the launch of Sputnik, the Soviet Union was the first spacefaring nation on the planet. Throughout the years, the soviets dominated the new frontier, setting new milestones left and right. However, things would soon change. 
+ 
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ With the launch of Sputnik, the Soviet Union was the first spacefaring nation on
 
 ## Overview
 
-
+The launch of Sputnik-1 marked the start of the Space Race between the United States and the Soviet Union. Throughout the years, the Soviets would dominate space, reaching new milestones left and right. 
 
 
 
@@ -38,8 +38,16 @@ With the launch of Sputnik, the Soviet Union was the first spacefaring nation on
 
 ## Visualizations
 
+### NASA vs USSR comparison
 
+![NASA USSR comparison](images/nasa-ussr-comparison.png)
 
+### US based companies comparison
 
+![NASA USSR comparison](images/nasa-spacex-ula-2000-and-onward.png)
+
+### Adding Russia to the mix
+
+![NASA USSR comparison](images/russia-comparison.png)
 
 ## Conclusion
