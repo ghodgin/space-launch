@@ -44,6 +44,8 @@ The dataset titled 'All Space Missions from 1957' (found [here](https://www.kagg
 
 With these columns in mind all I wanted from the dataset was how many launches occured on or near the fall of the Soviet Union, separated by the individual organizations that launched. 
 
+Originally, cleaning the data only took a little bit of effort. I started by dropping the first two unnamed columns that provided no value to the dataset. Then, I noticed the 'Datum' column was a string value with the dates including the date and time down to the minute of each launch. My first thought was to clean this column by only taking 
+
 Overall, the dataset itself was not cluttered and did not have any major cleaning required. The biggest hurdle was changing the 'Datum' column into a more useful pandas datetime object. 
 
 There were no outliers in this dataset.
