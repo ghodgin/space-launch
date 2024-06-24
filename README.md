@@ -1,6 +1,6 @@
 # The Fall of the Soviet Union and its effects on American space flight
 
- ** Edit ** to replicate results in the notebook file, move the 'launc-exploratory.ipynb' file out of its folder
+ ** Edit ** to replicate results in the notebook file, move the 'launch-exploratory.ipynb' file out of its folder
 
 ## Table of Contents
 
