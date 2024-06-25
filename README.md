@@ -2,6 +2,8 @@
 
  ** Edit ** to replicate results in the notebook file, move the 'launch-exploratory.ipynb' file out of its folder
 
+ ![liftoff gif](https://64.media.tumblr.com/902ce0b02e2b5e8493b5ebad69b00a2c/tumblr_ng0t8eqPcY1rnq3cto1_500.gif)
+
 ## Table of Contents
 
 1. [Overview](#overview)
